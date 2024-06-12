@@ -51,9 +51,6 @@ if ($additional_banner) {
 <?php
 $comments_slider = get_field('comments_slider');
 if ($comments_slider) {
-    echo '<pre>';
-    print_r($comments_slider);
-    echo '</pre>';
     ?>
     <div class="comments-block">
         <div class="slider-block">
@@ -133,20 +130,28 @@ if ($comments_slider) {
     </div>
 
 <?php } ?>
+
+<?php
+$feedback_place = get_field('feedback_place');
+if ($feedback_place) {
+    ?>
     <div class="contact-section">
         <div class="contact-section-block">
             <div class="contact-info">
-                <h2>Get in Touch</h2>
+                <h2><?php echo $feedback_place['title']; ?></h2>
                 <div class="space"></div>
-                <p class="contact-email"><a href="mailto:hello@domainexample.com">hello@domainexample.com</a></p>
-                <p class="contact-address">237 Haylee Islands Suite 960</p>
+                <p class="contact-email"><a
+                        href="mailto:<?php echo $feedback_place['email']; ?>"><?php echo $feedback_place['email']; ?></a>
+                </p>
+                <p class="contact-address"><?php echo $feedback_place['address']; ?></p>
             </div>
 
-            <div class="contact-form">
 
-                <form action="#" method="post">
+            <div class="contact-form">
+                <form action="<?php echo get_template_directory_uri(); ?>/contact_form.php" method="post" id="contact-form">
                     <input type="text" name="name" placeholder="Name" required>
                     <input type="email" name="email" placeholder="Email" required>
+                    <input type="hidden" name="to_email" value="<?php echo get_option('admin_email') ?>">
                     <textarea name="message" placeholder="Write something..." required></textarea>
                     <button type="submit" class="submit-button">
                         <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -157,7 +162,13 @@ if ($comments_slider) {
                         Submit Message
                     </button>
                 </form>
+                <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
+                    <div class="message success">Your message has been sent.</div>
+                <?php elseif (isset($_GET['status']) && $_GET['status'] == 'error'): ?>
+                    <div class="message error">There was a problem sending your message. Please try again.</div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
+<?php } ?>
 <?php get_footer(); ?>

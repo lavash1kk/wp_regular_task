@@ -23,7 +23,7 @@ if (have_posts()) :
     endwhile;
 else :
     ?>
-    <p><?php esc_html_e('Sorry, no posts matched your criteria.', 'theme_text_domain'); ?></p>
+    <p><?php esc_html_e('404', 'theme_text_domain'); ?></p>
 <?php
 endif;
 

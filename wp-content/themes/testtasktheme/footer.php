@@ -1,4 +1,3 @@
-
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-logo">
@@ -6,7 +5,7 @@
             if (has_custom_logo()) {
                 the_custom_logo();
             } else { ?>
-                <a href="/"><img src="<?php echo get_template_directory_uri(); ?>/images/logo.svg" alt="Site Logo" ></a>
+                <a href="/"><img src="<?php echo get_template_directory_uri(); ?>/images/logo.svg" alt="Site Logo"></a>
                 <?php
             }
             ?>
@@ -15,19 +14,30 @@
             <?php
             wp_nav_menu(array(
                 'theme_location' => 'primary',
-                'menu_class'     => 'footer-nav-list',
-                'container'      => false,
-                'depth'          => 1,
+                'menu_class' => 'footer-nav-list',
+                'container' => false,
+                'depth' => 1,
             ));
             ?>
         </nav>
+
+        <?php
+        $page = get_page_by_path('home');
+        if ($page) {
+        $page_id = $page->ID;
+        $copyright = get_field('copyright', $page_id);
+        if ($copyright) {
+        ?>
         <div class="footer-copyright">
-            <p>Copyright © 2021 All rights reserved</p>
+            <p><?php echo $copyright ?></p>
         </div>
     </div>
+
+    <?php }
+    } ?>
 </footer>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="<?php echo get_template_directory_uri();?>/js/scripts.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/js/scripts.js"></script>
 <?php wp_footer(); ?>
 </body>
 </html>

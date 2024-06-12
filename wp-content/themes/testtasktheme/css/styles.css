@@ -327,6 +327,22 @@ body {
     object-fit: cover;
     object-position: top;
 }
+
+.message {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid var(--half-dark-color);
+    border-radius: 5px;
+}
+.message.success {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+.message.error {
+    border-color: var(--dark-color);
+    color: var(--dark-color);
+}
+
 @media (max-width: 1900px) {
     .right-content {
         margin-left: 50vw;
@@ -396,8 +412,8 @@ body {
 
     .banner-left-content h2 {
         font-size: 40px;
-        white-space: normal; /* Дозволяє автоматичний перенос тексту */
-        word-wrap: break-word; /* Дозволяє переносити слова, які не вміщаються */
+        white-space: normal;
+        word-wrap: break-word;
         overflow-wrap: break-word;
     }
 }
