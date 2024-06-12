@@ -241,7 +241,6 @@ body {
     padding: 3.6px 3.3px 3.5px 4.1px;
 }
 
-
 .nav-list {
     display: flex;
     flex-direction: row;
@@ -253,22 +252,27 @@ body {
     margin: 0 70px 0 auto;
 }
 
-.nav-item {
+.nav-list li {
     text-decoration: none;
     color: var(--nav-item-text-color);
     font-size: 16px;
     font-weight: normal;
 }
 
-.nav-item.active {
+.nav-list li a {
+    text-decoration: none;
+    color: inherit; /* Наслідувати колір від <li> */
+}
+
+.nav-list li.current-menu-item a, /* Для активного пункту меню */
+.nav-list li.current_page_item a {
     font-weight: 500;
     color: var(--dark-color);
 }
 
-.nav-item:hover {
+.nav-list li a:hover {
     color: var(--dark-color);
 }
-
 /*Main block*/
 
 .main-content {

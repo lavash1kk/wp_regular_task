@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title><?php wp_title('|',true,'right');?></title>
-    <link rel="stylesheet" href="<?php get_template_directory_uri(); ?>/css/styles.css">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/css/styles.css">
     <?php wp_head();?>
 </head>
 <body>
@@ -15,14 +15,24 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <img src="<?php get_template_directory_uri(); ?>/images/logo.svg" alt="Site Logo">
+            <?php
+            if (has_custom_logo()) {
+                the_custom_logo();
+            } else { ?>
+                <img src="<?php echo get_template_directory_uri(); ?>/images/logo.svg" alt="Site Logo">
+            <?php
+            }
+            ?>
         </div>
-        <ul class="nav-list">
-            <li><a href="#" class="nav-item active">Home</a></li>
-            <li><a href="#" class="nav-item">About</a></li>
-            <li><a href="#" class="nav-item">Products</a></li>
-            <li><a href="#" class="nav-item">Testimonials</a></li>
-            <li><a href="#" class="nav-item">Contact</a></li>
-        </ul>
+        <?php
+        if (has_nav_menu('primary')) {
+            wp_nav_menu(array(
+                'theme_location' => 'primary',
+                'menu_class'     => 'nav-list',
+                'container'      => false,
+                'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+            ));
+        }
+        ?>
     </nav>
 </header>

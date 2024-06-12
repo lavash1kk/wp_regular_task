@@ -2,7 +2,14 @@
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-logo">
-            <img src="<?php get_template_directory_uri(); ?>/images/logo.svg" alt="John Doe Logo">
+            <?php
+            if (has_custom_logo()) {
+                the_custom_logo();
+            } else { ?>
+                <img src="<?php echo get_template_directory_uri(); ?>/images/logo.svg" alt="Site Logo">
+                <?php
+            }
+            ?>
         </div>
         <nav class="footer-nav">
             <ul class="footer-nav-list">
@@ -19,7 +26,7 @@
     </div>
 </footer>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="<?php get_template_directory_uri(); ?>/js/scripts.js"></script>
+<script src="<?php echo get_template_directory_uri();?>/js/scripts.js"></script>
 <?php wp_footer(); ?>
 </body>
 </html>
