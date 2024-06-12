@@ -12,13 +12,14 @@
             ?>
         </div>
         <nav class="footer-nav">
-            <ul class="footer-nav-list">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Testimonials</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
+            <?php
+            wp_nav_menu(array(
+                'theme_location' => 'primary',
+                'menu_class'     => 'footer-nav-list',
+                'container'      => false,
+                'depth'          => 1,
+            ));
+            ?>
         </nav>
         <div class="footer-copyright">
             <p>Copyright © 2021 All rights reserved</p>
