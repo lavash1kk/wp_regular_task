@@ -71,6 +71,10 @@ p.text_small {
     line-height: 21px;
 }
 
+a {
+    text-decoration: none;
+}
+
 button {
     height: 60px;
     display: flex;
@@ -261,10 +265,10 @@ body {
 
 .nav-list li a {
     text-decoration: none;
-    color: inherit; /* Наслідувати колір від <li> */
+    color: inherit;
 }
 
-.nav-list li.current-menu-item a, /* Для активного пункту меню */
+.nav-list li.current-menu-item a,
 .nav-list li.current_page_item a {
     font-weight: 500;
     color: var(--dark-color);
@@ -684,82 +688,82 @@ textarea::placeholder {
     }
 
     .main-content {
-        height: auto; /* Висота залежить від вмісту */
-        flex-direction: column; /* Елементи в колонку */
-        padding: 5px; /* Відсутність відступів */
-        align-items: center; /* Вирівнювання елементів по центру */
+        height: auto;
+        flex-direction: column;
+        padding: 5px;
+        align-items: center;
     }
 
     .left-content {
-        position: relative; /* Змінюємо позиціонування для нормального відображення */
-        width: 100%; /* Ширина по ширині екрану */
-        left: 5px; /* Скасовуємо зміщення вліво */
-        top: 5px; /* Скасовуємо зміщення вверх */
-        padding: 20px; /* Додаємо невеликий внутрішній відступ для тексту */
+        position: relative;
+        width: 100%;
+        left: 5px;
+        top: 5px;
+        padding: 20px;
     }
 
     .left-content .text-content h1 {
-        font-size: 24px; /* Зменшуємо розмір шрифту заголовка */
-        line-height: normal; /* Стандартна висота рядка */
+        font-size: 24px;
+        line-height: normal;
     }
 
     .left-content .text-content p {
-        font-size: 16px; /* Зменшуємо розмір шрифту тексту */
-        font-weight: normal; /* Нормальна товщина шрифту */
+        font-size: 16px;
+        font-weight: normal;
     }
 
     .left-content button {
-        margin: 20px 0; /* Відступ зверху і знизу для кнопки */
-        box-shadow: none; /* Видаляємо тінь з кнопки */
+        margin: 20px 0;
+        box-shadow: none;
     }
 
     .right-content {
-        display: none; /* Приховуємо правий блок з зображенням */
+        display: none;
     }
 
     .body-content {
-        padding: 20px; /* Зменшуємо відступи для більш компактного вигляду */
+        padding: 20px;
     }
 
     .banner-content {
-        flex-direction: column; /* Зміна розташування елементів на вертикальне */
-        width: 100%; /* Адаптація ширини під ширину екрану */
-        height: auto; /* Висота адаптується під вміст */
-        padding: 20px; /* Зменшені відступи всередині банера */
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        padding: 20px;
     }
 
     .banner-left-content {
-        width: 100%; /* Вся доступна ширина для текстового контенту */
-        margin: 0; /* Відміна зовнішніх відступів */
-        padding-bottom: 20px; /* Відступ між текстовим і зображувальним блоками */
+        width: 100%;
+        margin: 0;
+        padding-bottom: 20px;
     }
 
     .banner-left-content h2 {
-        font-size: 24px; /* Зменшення розміру заголовка для мобільних пристроїв */
-        line-height: normal; /* Нормалізація висоти рядка */
+        font-size: 24px;
+        line-height: normal;
     }
 
     .banner-left-content p {
-        font-size: 16px; /* Адаптація розміру тексту для кращої читабельності */
+        font-size: 16px;
     }
 
     .banner-right-content {
-        width: 100%; /* Ширина зображення адаптована під ширину контейнера */
-        height: auto; /* Висота зображення адаптується під ширину */
-        display: none; /* Приховуємо зображення для економії простору на малих екранах */
+        width: 100%;
+        height: auto;
+        display: none;
     }
 
     .comments-block {
-        padding: 20px; /* Зменшені відступи для компактності */
+        padding: 20px;
     }
 
     .comments-block.slider-block {
-        width: 100%; /* Повна ширина для використання доступного простору */
+        width: 100%;
     }
 
     .top-content {
-        flex-direction: column; /* Стек елементів вертикально */
-        align-items: flex-start; /* Вирівнювання елементів по лівому краю */
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .slider-title span {
@@ -767,106 +771,106 @@ textarea::placeholder {
     }
 
     .navigation-arrows {
-        width: 100%; /* Використання повної ширини для стрілок навігації */
-        justify-content: space-around; /* Розміщення кнопок на доступній ширині */
-        margin-top: 10px; /* Додатковий відступ зверху для чіткості розмежування */
+        width: 100%;
+        justify-content: space-around;
+        margin-top: 10px;
     }
 
     .middle-content {
-        flex-direction: column; /* Вертикальне розміщення контенту */
-        padding: 20px; /* Зменшені відступи всередині блоку */
+        flex-direction: column;
+        padding: 20px;
     }
 
     .image-middle-content {
-        display: none; /* Приховування зображення для зосередження на тексті */
+        display: none;
     }
 
     .text-middle-content {
-        max-width: none; /* Видалення обмеження максимальної ширини */
-        text-align: center; /* Вирівнювання тексту по центру */
+        max-width: none;
+        text-align: center;
     }
 
     .comment {
-        font-size: 16px; /* Адаптація розміру тексту */
+        font-size: 16px;
     }
 
     .name-commentator {
-        font-size: 14px; /* Зменшення розміру імені коментатора */
+        font-size: 14px;
     }
 
     .job-title {
-        font-size: 12px; /* Зменшення розміру назви посади */
+        font-size: 12px;
     }
 
     .bottom-content {
-        padding: 10px 0; /* Зменшення вертикальних відступів */
+        padding: 10px 0;
     }
 
     .slider-dots {
-        justify-content: center; /* Центрування крапок слайдера */
+        justify-content: center;
     }
 
     .dot {
-        width: 8px; /* Зменшення розміру крапок */
+        width: 8px;
         height: 8px;
     }
 
     .dot.active {
-        background-color: var(--accent-color); /* Підкреслення активної крапки */
+        background-color: var(--accent-color);
     }
 
     .contact-section {
-        padding: 20px; /* Зменшені відступи для більшої економії простору */
+        padding: 20px;
     }
 
     .contact-section-block {
-        flex-direction: column; /* Стек елементів вертикально */
-        align-items: center; /* Вирівнювання елементів по центру */
-        gap: 30px; /* Зменшені відступи між блоками */
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
     }
 
     .contact-info {
-        text-align: center; /* Текст відображається по центру для зручності на малих екранах */
-        padding: 0px 20px; /* Додаткові бокові відступи для кращої читабельності */
+        text-align: center;
+        padding: 0px 20px;
     }
 
     .contact-info p {
-        font-size: 18px; /* Зменшення розміру шрифту для кращої адаптації */
+        font-size: 18px;
     }
 
     .contact-form {
-        width: 75%; /* Форма використовує всю доступну ширину */
-        max-width: none; /* Видалення обмежень максимальної ширини */
+        width: 75%;
+        max-width: none;
     }
 
     .contact-form input,
     .contact-form textarea {
         margin-left: 5px;
-        margin-bottom: 12px; /* Зменшені відступи між полями */
+        margin-bottom: 12px;
     }
 
     .contact-form button {
-        width: 100%; /* Кнопка займає всю ширину форми */
-        padding: 12px; /* Зменшення падінгу для кращої адаптації */
-        height: 50px; /* Зменшення висоти кнопки */
+        width: 100%;
+        padding: 12px;
+        height: 50px;
     }
 
     .space {
-        height: 0; /* Зменшення висоти пустого простору між елементами */
+        height: 0;
     }
 
     .footer {
-        padding: 20px 0; /* Зменшення вертикальних відступів */
+        padding: 20px 0;
     }
 
     .footer-container {
-        flex-direction: column; /* Вертикальне розташування всіх елементів */
+        flex-direction: column;
         align-items: center;
-        gap: 10px; /* Зменшення відстані між елементами */
+        gap: 10px;
     }
 
     .footer-logo img {
-        width: 180px; /* Зменшення розміру логотипу */
+        width: 180px;
     }
 
     .footer-nav {
@@ -874,21 +878,21 @@ textarea::placeholder {
     }
 
     .footer-nav-list {
-        flex-direction: column; /* Елементи навігації в колонку */
+        flex-direction: column;
         align-items: center;
-        gap: 10px; /* Зменшення відступів між посиланнями */
+        gap: 10px;
     }
 
     .footer-nav-list a {
-        font-size: 14px; /* Зменшення розміру шрифту посилань */
+        font-size: 14px;
     }
 
     .footer-nav-list li {
-        display: block; /* Кожен пункт займає всю доступну ширину */
+        display: block;
     }
 
     .footer-copyright {
-        font-size: 12px; /* Зменшення розміру шрифту копірайта */
-        padding: 10px 20px; /* Відступи для кращої читабельності */
+        font-size: 12px;
+        padding: 10px 20px;
     }
 }

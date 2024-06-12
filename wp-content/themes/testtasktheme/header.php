@@ -19,7 +19,7 @@
             if (has_custom_logo()) {
                 the_custom_logo();
             } else { ?>
-                <img src="<?php echo get_template_directory_uri(); ?>/images/logo.svg" alt="Site Logo">
+                <a href="/"><img src="<?php echo get_template_directory_uri(); ?>/images/logo.svg" alt="Site Logo" ></a>
             <?php
             }
             ?>
