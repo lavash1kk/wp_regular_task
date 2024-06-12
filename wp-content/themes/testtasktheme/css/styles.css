@@ -154,7 +154,7 @@ input.disabled {
     cursor: not-allowed;
 }
 
-.bg {
+.slider-nav {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -169,16 +169,16 @@ input.disabled {
     cursor: pointer;
 }
 
-.bg:hover {
+.slider-nav:hover {
 
     background-color: var(--accent-color);
 }
 
-.bg:hover svg path {
+.slider-nav:hover svg path {
     fill: var(--white-color);
 }
 
-.bg:focus {
+.slider-nav:focus {
 
     border-radius: 41px;
     border: solid 2px var(--special-color);
@@ -187,23 +187,23 @@ input.disabled {
     outline: none;
 }
 
-.bg:focus svg path {
+.slider-nav:focus svg path {
     fill: var(--white-color);
 }
 
-.bg:disabled,
-.bg.disabled {
+.slider-nav:disabled,
+.slider-nav.disabled {
     margin: 40px 216px 0 64px;
     background-color: var(--disabled-color);
     cursor: not-allowed;
 }
 
-.bg:disabled svg path,
-.bg.disabled svg path {
+.slider-nav:disabled svg path,
+.slider-nav.disabled svg path {
     fill: #bbb9b9;
 }
 
-.bg.left svg {
+.slider-nav.prev svg {
     transform: rotate(180deg);
 }
 
@@ -331,6 +331,11 @@ body {
     .right-content {
         margin-left: 50vw;
     }
+
+    .image-slide{
+        margin-right: auto;
+        margin-left: auto;
+    }
 }
 /*Body content*/
 
@@ -344,7 +349,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 1800px;
+    width: 100%;
     height: 490px;
     border-radius: 10px;
     background-color: var(--second-background-color);
@@ -359,7 +364,7 @@ body {
 }
 
 .banner-left-content h2 {
-    line-height: 0;
+    line-height: normal;
 }
 
 .banner-right-content {
@@ -391,10 +396,24 @@ body {
 
     .banner-left-content h2 {
         font-size: 40px;
+        white-space: normal; /* Дозволяє автоматичний перенос тексту */
+        word-wrap: break-word; /* Дозволяє переносити слова, які не вміщаються */
+        overflow-wrap: break-word;
     }
 }
-/*Slider*/
 
+/*Slider*/
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+.slider-container {
+    position: relative;
+    width: 1070%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+}
 .comments-block {
     background-color: var(--white-color);
     padding: 60px 375px 120px 375px;
@@ -423,7 +442,9 @@ body {
     gap: 20px;
 }
 
-.middle-content {
+
+.slide {
+    min-width: 100%;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -433,25 +454,39 @@ body {
     padding: 30px 40px 30px 30px;
 }
 
-.image-middle-content {
+.image-slide {
     flex: 0 0 auto;
     width: 550px;
     height: 340px;
     overflow: hidden;
-    margin-right: 20px;
 }
 
-.image-middle-content img {
+.image-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 10px;
 }
 
-.text-middle-content {
+.text-slide {
     flex: 1;
-    max-width: 700px;
+    max-width: 90%;
+    margin-right: 30px;
     text-align: left;
+}
+
+@media (max-width: 1245px) {
+    .image-slide {
+        width: 30vw;
+        height: auto;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .text-slide {
+        max-width: 75%;
+        margin-right: 5vw;
+    }
 }
 
 .comment {
@@ -608,7 +643,21 @@ textarea::placeholder {
 @media (max-width: 1900px) {
     .comments-block{
         margin: 0;
-        padding: 20px 100px 100px 20px;
+        padding: 6vw;
+    }
+}
+
+@media (max-width: 1500px) {
+    .slide {
+        min-width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        background-color: var(--second-background-color);
+        border-radius: 10px;
+        padding: 30px 40px 30px 30px;
     }
 }
 
@@ -776,17 +825,15 @@ textarea::placeholder {
         margin-top: 10px;
     }
 
-    .middle-content {
-        flex-direction: column;
-        padding: 20px;
-    }
-
-    .image-middle-content {
+    .image-slide {
         display: none;
     }
+    .slide {
+        min-width: 70%;
+    }
 
-    .text-middle-content {
-        max-width: none;
+    .text-slide {
+        max-width: 80%;
         text-align: center;
     }
 
@@ -831,7 +878,7 @@ textarea::placeholder {
 
     .contact-info {
         text-align: center;
-        padding: 0px 20px;
+        padding: 0 20px;
     }
 
     .contact-info p {
