@@ -6,7 +6,6 @@ get_header(); ?>
 
 <?php
 $main_banner = get_field('main_banner');
-
 if ($main_banner) {
     ?>
     <div class="main-content">
@@ -15,7 +14,7 @@ if ($main_banner) {
                 <h1><?php echo $main_banner['name']; ?></h1>
                 <p><?php echo $main_banner['description']; ?></p>
             </div>
-            <a href="<?php echo $main_banner['url_button']; ?>">
+            <a href="<?php echo $main_banner['url_button']['url']; ?>">
                 <button><?php echo $main_banner['text_button']; ?></button>
             </a>
         </div>
@@ -36,7 +35,7 @@ if ($additional_banner) {
     <div class="body-content">
         <div class="banner-content">
             <div class="banner-left-content">
-                <h2><?php echo $additional_banner['title']; ?></h2>
+                <h2 class="bannet-title"><?php echo $additional_banner['title']; ?></h2>
                 <p><?php echo $additional_banner['text']; ?></p>
             </div>
             <div class="banner-right-content">
@@ -138,7 +137,7 @@ if ($feedback_place) {
     <div class="contact-section">
         <div class="contact-section-block">
             <div class="contact-info">
-                <h2><?php echo $feedback_place['title']; ?></h2>
+                <h2 class = contact-info-title><?php echo $feedback_place['title']; ?></h2>
                 <div class="space"></div>
                 <p class="contact-email"><a
                         href="mailto:<?php echo $feedback_place['email']; ?>"><?php echo $feedback_place['email']; ?></a>
@@ -148,11 +147,12 @@ if ($feedback_place) {
 
 
             <div class="contact-form">
-                <form action="<?php echo get_template_directory_uri(); ?>/contact_form.php" method="post" id="contact-form">
-                    <input type="text" name="name" placeholder="Name" required>
-                    <input type="email" name="email" placeholder="Email" required>
+                <form action="<?php echo get_template_directory_uri(); ?>/contact_form.php" method="post"
+                      id="contact-form">
+                    <label><input type="text" name="name" placeholder="Name" required></label>
+                    <label><input type="email" name="email" placeholder="Email" required></label>
                     <input type="hidden" name="to_email" value="<?php echo get_option('admin_email') ?>">
-                    <textarea name="message" placeholder="Write something..." required></textarea>
+                    <label><textarea name="message" placeholder="Write something..." required></textarea></label>
                     <button type="submit" class="submit-button">
                         <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
