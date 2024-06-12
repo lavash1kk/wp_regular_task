@@ -30,3 +30,20 @@ $(document).ready(function () {
 
     showSlide(currentIndex);
 });
+
+function toggleMenu() {
+    var menu = document.querySelector('.nav-list');
+    var hamburger = document.querySelector('.hamburger-menu');
+
+    // Перемикання класу для відображення меню
+    menu.classList.toggle('active');
+
+    // Перемикання класу для анімації гамбургер-меню
+    hamburger.classList.toggle('active');
+}
+
+document.querySelectorAll('.nav-list a').forEach(function(link) {
+    link.addEventListener('click', function() {
+        document.querySelector('.nav-list').classList.remove('active');
+    });
+});

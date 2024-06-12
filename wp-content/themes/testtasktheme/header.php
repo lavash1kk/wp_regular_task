@@ -23,6 +23,12 @@
             }
             ?>
         </div>
+
+        <div class="hamburger-menu" onclick="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
         <?php
         if (has_nav_menu('primary')) {
             wp_nav_menu(array(
