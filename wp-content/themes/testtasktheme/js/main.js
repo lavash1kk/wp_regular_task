@@ -35,10 +35,9 @@ function toggleMenu() {
     var menu = document.querySelector('.nav-list');
     var hamburger = document.querySelector('.hamburger-menu');
 
-    // Перемикання класу для відображення меню
+    // Toggle to show menu
     menu.classList.toggle('active');
-
-    // Перемикання класу для анімації гамбургер-меню
+    // Toggle to show animation
     hamburger.classList.toggle('active');
 }
 

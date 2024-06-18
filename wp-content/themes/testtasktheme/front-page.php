@@ -118,7 +118,7 @@ if ($title_comments_slider) {
                         <?php
                         $post_count = $comments_query->found_posts;
                         for ($i = 1; $i <= $post_count; $i++):?>
-                            <span class="dot" data-slide="<?php echo $i ?>"></span>
+                            <span class="dot" data-slide="<?php echo $i; ?>"></span>
                         <?php endfor; ?>
 
                     </div>
@@ -151,23 +151,26 @@ if ($feedback_place) {
             <div class="contact-form">
                 <form action="<?php echo get_template_directory_uri(); ?>/contact_form.php" method="post"
                       id="contact-form">
-                    <label><input type="text" name="name" placeholder="Name" required></label>
-                    <label><input type="email" name="email" placeholder="Email" required></label>
+                    <label><input type="text" name="name" placeholder="<?php _e('Name', 'testtasktheme'); ?>" required></label>
+                    <label><input type="email" name="email" placeholder="<?php _e('Email', 'testtasktheme'); ?>"
+                                  required></label>
                     <input type="hidden" name="to_email" value="<?php echo get_option('admin_email') ?>">
-                    <label><textarea name="message" placeholder="Write something..." required></textarea></label>
+                    <label><textarea name="message" placeholder="<?php _e('Write something...', 'testtasktheme'); ?>"
+                                     required></textarea></label>
                     <button type="submit" class="submit-button">
                         <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                   d="M0.818176 1.85267L8.39603 8.58854C8.74047 8.89472 9.25952 8.89472 9.60396 8.58854L17.1818 1.85267V12.4545C17.1818 12.9566 16.7748 13.3636 16.2727 13.3636H1.72727C1.22519 13.3636 0.818176 12.9566 0.818176 12.4545V1.85267ZM2.1865 0.636353H15.8134L8.99995 6.69276L2.1865 0.636353Z"
                                   fill="white"/>
                         </svg>
-                        Submit Message
+                        <?php _e('Submit Message', 'testtasktheme'); ?>
                     </button>
                 </form>
                 <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
-                    <div class="message success">Your message has been sent.</div>
+                    <div class="message success"><?php _e('Your message has been sent.', 'testtasktheme'); ?></div>
                 <?php elseif (isset($_GET['status']) && $_GET['status'] == 'error'): ?>
-                    <div class="message error">There was a problem sending your message. Please try again.</div>
+                    <div
+                        class="message error"><?php _e('There was a problem sending your message. Please try again.', 'testtasktheme'); ?></div>
                 <?php endif; ?>
             </div>
         </div>

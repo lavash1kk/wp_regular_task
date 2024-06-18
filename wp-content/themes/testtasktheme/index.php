@@ -13,7 +13,7 @@ if (have_posts()) :
                 the_content();
 
                 wp_link_pages(array(
-                    'before' => '<div class="page-links">' . esc_html__('Pages:', 'theme_text_domain'),
+                    'before' => '<div class="page-links">' . esc_html__('Pages:', 'testtasktheme'),
                     'after' => '</div>',
                 ));
                 ?>
@@ -23,7 +23,7 @@ if (have_posts()) :
     endwhile;
 else :
     ?>
-    <p><?php esc_html_e('404', 'theme_text_domain'); ?></p>
+    <p><?php esc_html_e('404', 'testtasktheme'); ?></p>
 <?php
 endif;
 
