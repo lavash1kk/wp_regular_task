@@ -14,9 +14,8 @@ if ($main_banner) {
                 <h1><?php echo $main_banner['name']; ?></h1>
                 <p><?php echo $main_banner['description']; ?></p>
             </div>
-            <a href="<?php echo $main_banner['url_button']['url']; ?>">
-                <button><?php echo $main_banner['text_button']; ?></button>
-            </a>
+            <button onclick="location.href='<?php echo $main_banner['url_button']['url']; ?>'" type="button">
+                <?php echo $main_banner['text_button']; ?></button>
         </div>
         <div class="right-content">
             <div class="imgage-content">
