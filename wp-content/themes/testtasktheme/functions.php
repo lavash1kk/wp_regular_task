@@ -64,3 +64,16 @@ function register_comments_post_type() {
 }
 
 add_action( 'init', 'register_comments_post_type' );
+
+function save_copyright_to_options($post_id) {
+    if (get_page_template_slug($post_id) == 'home' || get_page_by_path('home')->ID == $post_id) {
+        $copyright = get_field('copyright', $post_id);
+        if ($copyright) {
+            $current_year = date('Y');
+            $dynamic_copyright = str_replace('[year]', $current_year, $copyright);
+            update_option('footer_copyright_text', $dynamic_copyright);
+        }
+    }
+}
+add_action('save_post', 'save_copyright_to_options');
+

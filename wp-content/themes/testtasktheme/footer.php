@@ -22,19 +22,15 @@
         </nav>
 
         <?php
-        $page = get_page_by_path('home');
-        if ($page) {
-        $page_id = $page->ID;
-        $copyright = get_field('copyright', $page_id);
-        if ($copyright) {
-        ?>
-        <div class="footer-copyright">
-            <p><?php echo $copyright ?></p>
-        </div>
-    </div>
+        $copyright = get_option('footer_copyright_text');
+        if ($copyright && $copyright != '') {
+            echo '<div class="footer-copyright"><p>' . esc_html($copyright) . '</p></div>';
+        } else {
+            $current_year = date('Y');
+            echo '<div class="footer-copyright"><p>' . sprintf(__('Copyright © %d All rights reserved.', 'testtasktheme'), $current_year) . '</p></div>';
+        } ?>
 
-    <?php }
-    } ?>
+
 </footer>
 <?php wp_footer(); ?>
 </body>
