@@ -48,86 +48,88 @@ if ($additional_banner) {
 ?>
 
 <?php
-$comments_slider = get_field('comments_slider');
-if ($comments_slider) {
-    ?>
-    <div class="comments-block">
-        <div class="slider-block">
-            <div class="top-content">
-                <?php
-                $words = explode(' ', $comments_slider['title']);
-                $middle_index = ceil(count($words) / 2);
-                $first_part = implode(' ', array_slice($words, 0, $middle_index));
-                $second_part = implode(' ', array_slice($words, $middle_index));
-                ?>
-                <div class="slider-title">
-                    <h2><?php echo $first_part; ?> <span><?php echo $second_part; ?></span></h2>
-                </div>
+$title_comments_slider = get_field('title_comments_slider');
+if ($title_comments_slider) {
+    $args = array(
+        'post_type' => 'custom_comment',
+        'posts_per_page' => -1,
+        'post_status' => 'any', // Отримуємо записи з будь-яким статусом
+    );
+    $comments_query = new WP_Query($args);
 
-                <div class="navigation-arrows">
-                    <button class="slider-nav prev">
-                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_1_343)">
-                                <path
-                                    d="M19.7709 9.94711C19.7706 9.94687 19.7704 9.9466 19.7702 9.94636L15.688 5.88387C15.3821 5.57953 14.8875 5.58067 14.5831 5.88653C14.2787 6.19235 14.2799 6.68699 14.5857 6.99137L17.3265 9.71886H0.78125C0.349766 9.71886 0 10.0686 0 10.5001C0 10.9316 0.349766 11.2814 0.78125 11.2814H17.3264L14.5857 14.0089C14.2799 14.3132 14.2788 14.8079 14.5831 15.1137C14.8875 15.4196 15.3822 15.4207 15.688 15.1164L19.7702 11.0539C19.7704 11.0536 19.7706 11.0534 19.7709 11.0531C20.0769 10.7477 20.0759 10.2515 19.7709 9.94711Z"
-                                    fill="black"/>
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_1_343">
-                                    <rect width="20" height="20" fill="white" transform="translate(0 0.5)"/>
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </button>
-
-                    <button class="slider-nav next">
-                        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_1_343)">
-                                <path
-                                    d="M19.7709 9.94711C19.7706 9.94687 19.7704 9.9466 19.7702 9.94636L15.688 5.88387C15.3821 5.57953 14.8875 5.58067 14.5831 5.88653C14.2787 6.19235 14.2799 6.68699 14.5857 6.99137L17.3265 9.71886H0.78125C0.349766 9.71886 0 10.0686 0 10.5001C0 10.9316 0.349766 11.2814 0.78125 11.2814H17.3264L14.5857 14.0089C14.2799 14.3132 14.2788 14.8079 14.5831 15.1137C14.8875 15.4196 15.3822 15.4207 15.688 15.1164L19.7702 11.0539C19.7704 11.0536 19.7706 11.0534 19.7709 11.0531C20.0769 10.7477 20.0759 10.2515 19.7709 9.94711Z"
-                                    fill="black"/>
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_1_343">
-                                    <rect width="20" height="20" fill="white" transform="translate(0 0.5)"/>
-                                </clipPath>
-                            </defs>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div class="slider-container">
-                <div class="slider-wrapper">
+    if ($comments_query->have_posts()) :
+        ?>
+        <div class="comments-block">
+            <div class="slider-block">
+                <div class="top-content">
                     <?php
-                    $num_sliders = (count($comments_slider) - 1);
-                    for ($i = 1; $i <= $num_sliders; $i++): ?>
-                        <div class="slide">
-                            <div class="image-slide">
-                                <img src="<?php echo $comments_slider['slide_' . $i]['image']; ?>" alt="Comments">
+                    $words = explode(' ', $title_comments_slider);
+                    $middle_index = ceil(count($words) / 2);
+                    $first_part = implode(' ', array_slice($words, 0, $middle_index));
+                    $second_part = implode(' ', array_slice($words, $middle_index));
+                    ?>
+                    <div class="slider-title">
+                        <h2><?php echo $first_part; ?> <span><?php echo $second_part; ?></span></h2>
+                    </div>
+
+                    <div class="navigation-arrows">
+                        <button class="slider-nav prev">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21">
+                                <path
+                                    d="M19.7709 9.94711C19.7706 9.94687 19.7704 9.9466 19.7702 9.94636L15.688 5.88387C15.3821 5.57953 14.8875 5.58067 14.5831 5.88653C14.2787 6.19235 14.2799 6.68699 14.5857 6.99137L17.3265 9.71886H0.78125C0.349766 9.71886 0 10.0686 0 10.5001C0 10.9316 0.349766 11.2814 0.78125 11.2814H17.3264L14.5857 14.0089C14.2799 14.3132 14.2788 14.8079 14.5831 15.1137C14.8875 15.4196 15.3822 15.4207 15.688 15.1164L19.7702 11.0539C19.7704 11.0536 19.7706 11.0534 19.7709 11.0531C20.0769 10.7477 20.0759 10.2515 19.7709 9.94711Z"/>
+                            </svg>
+                        </button>
+
+                        <button class="slider-nav next">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21">
+                                <path
+                                    d="M19.7709 9.94711C19.7706 9.94687 19.7704 9.9466 19.7702 9.94636L15.688 5.88387C15.3821 5.57953 14.8875 5.58067 14.5831 5.88653C14.2787 6.19235 14.2799 6.68699 14.5857 6.99137L17.3265 9.71886H0.78125C0.349766 9.71886 0 10.0686 0 10.5001C0 10.9316 0.349766 11.2814 0.78125 11.2814H17.3264L14.5857 14.0089C14.2799 14.3132 14.2788 14.8079 14.5831 15.1137C14.8875 15.4196 15.3822 15.4207 15.688 15.1164L19.7702 11.0539C19.7704 11.0536 19.7706 11.0534 19.7709 11.0531C20.0769 10.7477 20.0759 10.2515 19.7709 9.94711Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="slider-container">
+                    <div class="slider-wrapper">
+                        <?php
+                        while ($comments_query->have_posts()) : $comments_query->the_post();
+                            ?>
+
+                            <div class="slide">
+                                <div class="image-slide">
+                                    <img src="<?php echo get_field('image'); ?>" alt="Comments">
+                                </div>
+
+                                <div class="text-slide">
+                                    <p class="comment text_italic_large">
+                                        “<?php echo get_field('comment'); ?>“</p>
+                                    <p class="name-commentator"><?php echo get_field('author'); ?></p>
+                                    <p class="job-title"><?php echo get_field('job_title'); ?></p>
+                                </div>
                             </div>
 
-                            <div class="text-slide">
-                                <p class="comment text_italic_large">
-                                    “<?php echo $comments_slider['slide_' . $i]['comment']; ?>“</p>
-                                <p class="name-commentator"><?php echo $comments_slider['slide_' . $i]['author']; ?></p>
-                                <p class="job-title"><?php echo $comments_slider['slide_' . $i]['job_title']; ?></p>
-                            </div>
-                        </div>
-                    <?php endfor; ?>
+                        <?php
+                        endwhile;
+                        wp_reset_postdata();
+                        ?>
+                    </div>
                 </div>
-            </div>
-            <div class="bottom-content">
-                <div class="slider-dots">
-                    <?php
-                    for ($i = 1; $i <= $num_sliders; $i++):?>
-                        <span class="dot" data-slide="<?php echo $i ?>"></span>
-                    <?php endfor; ?>
+                <div class="bottom-content">
+                    <div class="slider-dots">
+                        <?php
+                        $post_count = $comments_query->found_posts;
+                        for ($i = 1; $i <= $post_count; $i++):?>
+                            <span class="dot" data-slide="<?php echo $i ?>"></span>
+                        <?php endfor; ?>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
+    <?php
+    else :
+        echo 'No custom comments found.';
+    endif;
+    ?>
 <?php } ?>
 
 <?php
@@ -137,7 +139,7 @@ if ($feedback_place) {
     <div class="contact-section">
         <div class="contact-section-block">
             <div class="contact-info">
-                <h2 class = contact-info-title><?php echo $feedback_place['title']; ?></h2>
+                <h2 class=contact-info-title><?php echo $feedback_place['title']; ?></h2>
                 <div class="space"></div>
                 <p class="contact-email"><a
                         href="mailto:<?php echo $feedback_place['email']; ?>"><?php echo $feedback_place['email']; ?></a>
