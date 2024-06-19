@@ -24,7 +24,7 @@ if ($main_banner) {
         </div>
         <div class="right-content">
             <div class="image-content">
-                <img src="<?php echo $main_banner['image']; ?>" alt="John Doe">
+                <img src="<?php echo !empty($main_banner['image']) ? esc_url($main_banner['image']) : get_template_directory_uri() . '/images/man_img.png'; ?>" alt="John Doe">
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@ if ($additional_banner) {
                 <p><?php echo $additional_banner['text']; ?></p>
             </div>
             <div class="banner-right-content">
-                <img src="<?php echo $additional_banner['background_image']; ?>" alt="Devices">
+                <img src="<?php echo !empty($additional_banner['background_image']) ? esc_url($additional_banner['background_image']) : get_template_directory_uri() . '/images/img_devices.png'; ?>" alt="Devices">
             </div>
         </div>
     </div>
