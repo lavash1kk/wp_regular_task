@@ -52,11 +52,16 @@ if ($title_comments_slider) {
     $args = array(
         'post_type' => 'custom_comment',
         'posts_per_page' => -1,
-        'post_status' => 'any', // Отримуємо записи з будь-яким статусом
+        'post_status' => 'any',
+        'meta_key' => 'comment_index',
+        'orderby' => 'meta_value_num',
+        'order' => 'ASC',
     );
     $comments_query = new WP_Query($args);
+// Отримуємо дані коментарів
+    $comments_data = get_custom_comments_data();
 
-    if ($comments_query->have_posts()) :
+    if ($comments_data) :
         ?>
         <div class="comments-block">
             <div class="slider-block">
@@ -90,24 +95,20 @@ if ($title_comments_slider) {
                 <div class="slider-container">
                     <div class="slider-wrapper">
                         <?php
-                        while ($comments_query->have_posts()) : $comments_query->the_post();
-                            ?>
-
+                        foreach ($comments_data as $comment) { ?>
                             <div class="slide">
                                 <div class="image-slide">
-                                    <img src="<?php echo get_field('image'); ?>" alt="Comments">
+                                    <img src="<?php echo !empty($comment['image']) ? esc_url($comment['image']) : get_template_directory_uri() . '/images/img_for_comments.png'; ?>" alt="Comments">
                                 </div>
 
                                 <div class="text-slide">
                                     <p class="comment text_italic_large">
-                                        “<?php echo get_field('comment'); ?>“</p>
-                                    <p class="name-commentator"><?php echo get_field('author'); ?></p>
-                                    <p class="job-title"><?php echo get_field('job_title'); ?></p>
+                                        “<?php echo $comment['comment']; ?>“</p>
+                                    <p class="name-commentator"><?php echo $comment['author']; ?></p>
+                                    <p class="job-title"><?php echo $comment['job_title']; ?></p>
                                 </div>
                             </div>
-
-                        <?php
-                        endwhile;
+                        <?php }
                         wp_reset_postdata();
                         ?>
                     </div>
@@ -115,7 +116,7 @@ if ($title_comments_slider) {
                 <div class="bottom-content">
                     <div class="slider-dots">
                         <?php
-                        $post_count = $comments_query->found_posts;
+                        $post_count = count($comments_data);
                         for ($i = 1; $i <= $post_count; $i++):?>
                             <span class="dot" data-slide="<?php echo $i; ?>"></span>
                         <?php endfor; ?>
@@ -150,14 +151,17 @@ if ($feedback_place) {
             <div class="contact-form">
                 <form action="<?php echo get_template_directory_uri(); ?>/contact_form.php" method="post"
                       id="contact-form">
-                    <label><input type="text" name="name" placeholder="<?php _e('Name', 'testtasktheme'); ?>" required></label>
+                    <label><input type="text" name="name" placeholder="<?php _e('Name', 'testtasktheme'); ?>"
+                                  required></label>
                     <label><input type="email" name="email" placeholder="<?php _e('Email', 'testtasktheme'); ?>"
                                   required></label>
                     <input type="hidden" name="to_email" value="<?php echo get_option('admin_email') ?>">
-                    <label><textarea name="message" placeholder="<?php _e('Write something...', 'testtasktheme'); ?>"
+                    <label><textarea name="message"
+                                     placeholder="<?php _e('Write something...', 'testtasktheme'); ?>"
                                      required></textarea></label>
                     <button type="submit" class="submit-button">
-                        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="18" height="14" viewBox="0 0 18 14" fill="none"
+                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
                                   d="M0.818176 1.85267L8.39603 8.58854C8.74047 8.89472 9.25952 8.89472 9.60396 8.58854L17.1818 1.85267V12.4545C17.1818 12.9566 16.7748 13.3636 16.2727 13.3636H1.72727C1.22519 13.3636 0.818176 12.9566 0.818176 12.4545V1.85267ZM2.1865 0.636353H15.8134L8.99995 6.69276L2.1865 0.636353Z"
                                   fill="white"/>
@@ -166,7 +170,8 @@ if ($feedback_place) {
                     </button>
                 </form>
                 <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
-                    <div class="message success"><?php _e('Your message has been sent.', 'testtasktheme'); ?></div>
+                    <div
+                        class="message success"><?php _e('Your message has been sent.', 'testtasktheme'); ?></div>
                 <?php elseif (isset($_GET['status']) && $_GET['status'] == 'error'): ?>
                     <div
                         class="message error"><?php _e('There was a problem sending your message. Please try again.', 'testtasktheme'); ?></div>

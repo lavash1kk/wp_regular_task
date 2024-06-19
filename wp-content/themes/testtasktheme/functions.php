@@ -77,3 +77,49 @@ function save_copyright_to_options($post_id) {
 }
 add_action('save_post', 'save_copyright_to_options');
 
+
+
+// Функція для отримання кастомних коментарів
+function get_custom_comments_data($args = array()) {
+    // Встановлюємо дефолтні параметри
+    $default_args = array(
+        'post_type' => 'custom_comment',
+        'posts_per_page' => -1,
+        'post_status' => 'any',
+        'meta_key' => 'comment_index', // Назва метаполя для сортування
+        'orderby' => 'meta_value_num',
+        'order' => 'ASC',
+    );
+
+    // Об'єднуємо дефолтні параметри з переданими
+    $query_args = wp_parse_args($args, $default_args);
+
+    // Виконуємо запит WP_Query
+    $comments_query = new WP_Query($query_args);
+
+    // Перевіряємо, чи є результати
+    if ($comments_query->have_posts()) {
+        $comments_data = array();
+
+        // Збираємо дані кожного поста в масив
+        while ($comments_query->have_posts()) : $comments_query->the_post();
+            $comments_data[] = array(
+                'ID' => get_the_ID(),
+                'title' => get_the_title(),
+                'content' => get_the_content(),
+                'image' => get_field('image'),
+                'author' => get_field('author'),
+                'job_title' => get_field('job_title'),
+                'comment' => get_field('comment'),
+                'comment_index' => get_field('comment_index')
+            );
+        endwhile;
+
+        // Відновлюємо глобальний об'єкт $post
+        wp_reset_postdata();
+
+        return $comments_data; // Повертаємо масив даних
+    } else {
+        return false; // Якщо коментарів немає, повертаємо false
+    }
+}
