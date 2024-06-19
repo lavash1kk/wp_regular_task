@@ -24,7 +24,9 @@ if ($main_banner) {
         </div>
         <div class="right-content">
             <div class="image-content">
-                <img src="<?php echo !empty($main_banner['image']) ? esc_url($main_banner['image']) : get_template_directory_uri() . '/images/man_img.png'; ?>" alt="John Doe">
+                <img
+                    src="<?php echo !empty($main_banner['image']) ? esc_url($main_banner['image']) : get_template_directory_uri() . '/images/man_img.png'; ?>"
+                    alt="John Doe">
             </div>
         </div>
     </div>
@@ -43,7 +45,9 @@ if ($additional_banner) {
                 <p><?php echo $additional_banner['text']; ?></p>
             </div>
             <div class="banner-right-content">
-                <img src="<?php echo !empty($additional_banner['background_image']) ? esc_url($additional_banner['background_image']) : get_template_directory_uri() . '/images/img_devices.png'; ?>" alt="Devices">
+                <img
+                    src="<?php echo !empty($additional_banner['background_image']) ? esc_url($additional_banner['background_image']) : get_template_directory_uri() . '/images/img_devices.png'; ?>"
+                    alt="Devices">
             </div>
         </div>
     </div>
@@ -93,17 +97,21 @@ if ($title_comments_slider) {
                         <?php
                         foreach ($comments_data as $comment) { ?>
                             <div class="slide">
-                                <div class="image-slide">
-                                    <img
-                                        src="<?php echo !empty($comment['image']) ? esc_url($comment['image']) : get_template_directory_uri() . '/images/img_for_comments.png'; ?>"
-                                        alt="Comments">
-                                </div>
 
-                                <div class="text-slide">
-                                    <p class="comment text_italic_large">
-                                        “<?php echo $comment['comment']; ?>“</p>
-                                    <p class="name-commentator"><?php echo $comment['author']; ?></p>
-                                    <p class="job-title"><?php echo $comment['job_title']; ?></p>
+                                <div class="slider_content">
+                                    <div class="image-slide">
+                                        <img
+                                            src="<?php echo !empty($comment['image']) ? esc_url($comment['image']) : get_template_directory_uri() . '/images/img_for_comments.png'; ?>"
+                                            alt="Comments">
+                                    </div>
+
+                                    <div class="text-slide">
+                                        <p class="comment text_italic_large">
+                                            “<?php echo $comment['comment']; ?>“</p>
+                                        <p class="name-commentator"><?php echo $comment['author']; ?></p>
+                                        <p class="job-title"><?php echo $comment['job_title']; ?></p>
+                                    </div>
+
                                 </div>
                             </div>
                         <?php } ?>
@@ -136,11 +144,14 @@ if ($feedback_place) {
         <div class="contact-section-block">
             <div class="contact-info">
                 <h2 class=contact-info-title><?php echo $feedback_place['title']; ?></h2>
-                <div class="space"></div>
-                <p class="contact-email"><a
-                        href="mailto:<?php echo $feedback_place['email']; ?>"><?php echo $feedback_place['email']; ?></a>
-                </p>
-                <p class="contact-address"><?php echo $feedback_place['address']; ?></p>
+
+
+                <div class="contacts">
+                    <p class="contact-email"><a
+                            href="mailto:<?php echo $feedback_place['email']; ?>"><?php echo $feedback_place['email']; ?></a>
+                    </p>
+                    <p class="contact-address"><?php echo $feedback_place['address']; ?></p>
+                </div>
             </div>
 
 
