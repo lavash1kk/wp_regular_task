@@ -14,11 +14,16 @@ if ($main_banner) {
                 <h1><?php echo $main_banner['name']; ?></h1>
                 <p><?php echo $main_banner['description']; ?></p>
             </div>
-            <button onclick="location.href='<?php echo $main_banner['url_button']['url']; ?>'" type="button">
-                <?php echo $main_banner['text_button']; ?></button>
+            <?php
+            $url = !empty($main_banner['button']['url']) ? $main_banner['button']['url'] : home_url();
+            $title = !empty($main_banner['button']['title']) ? $main_banner['button']['title'] : 'Free Seo Consulting Training';
+            ?>
+            <button onclick="location.href='<?php echo $url; ?>'" type="button">
+                <?php echo $title; ?>
+            </button>
         </div>
         <div class="right-content">
-            <div class="imgage-content">
+            <div class="image-content">
                 <img src="<?php echo $main_banner['image']; ?>" alt="John Doe">
             </div>
         </div>
@@ -34,7 +39,7 @@ if ($additional_banner) {
     <div class="body-content">
         <div class="banner-content">
             <div class="banner-left-content">
-                <h2 class="bannet-title"><?php echo $additional_banner['title']; ?></h2>
+                <h2 class="banner-title"><?php echo $additional_banner['title']; ?></h2>
                 <p><?php echo $additional_banner['text']; ?></p>
             </div>
             <div class="banner-right-content">
@@ -49,16 +54,7 @@ if ($additional_banner) {
 <?php
 $title_comments_slider = get_field('title_comments_slider');
 if ($title_comments_slider) {
-    $args = array(
-        'post_type' => 'custom_comment',
-        'posts_per_page' => -1,
-        'post_status' => 'any',
-        'meta_key' => 'comment_index',
-        'orderby' => 'meta_value_num',
-        'order' => 'ASC',
-    );
-    $comments_query = new WP_Query($args);
-// Отримуємо дані коментарів
+
     $comments_data = get_custom_comments_data();
 
     if ($comments_data) :
@@ -98,7 +94,9 @@ if ($title_comments_slider) {
                         foreach ($comments_data as $comment) { ?>
                             <div class="slide">
                                 <div class="image-slide">
-                                    <img src="<?php echo !empty($comment['image']) ? esc_url($comment['image']) : get_template_directory_uri() . '/images/img_for_comments.png'; ?>" alt="Comments">
+                                    <img
+                                        src="<?php echo !empty($comment['image']) ? esc_url($comment['image']) : get_template_directory_uri() . '/images/img_for_comments.png'; ?>"
+                                        alt="Comments">
                                 </div>
 
                                 <div class="text-slide">
@@ -108,9 +106,7 @@ if ($title_comments_slider) {
                                     <p class="job-title"><?php echo $comment['job_title']; ?></p>
                                 </div>
                             </div>
-                        <?php }
-                        wp_reset_postdata();
-                        ?>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="bottom-content">
@@ -127,7 +123,7 @@ if ($title_comments_slider) {
         </div>
     <?php
     else :
-        echo 'No custom comments found.';
+        echo __('No custom comments found.', 'testtasktheme');
     endif;
     ?>
 <?php } ?>
